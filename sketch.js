@@ -39,7 +39,7 @@ function setup() {
   invisibleGround.visible = false;
 
 
-  
+  pipesGroup = new Group();
   
   score = 0;
 }
@@ -66,7 +66,9 @@ function draw() {
     mario.collide(invisibleGround);
 
   
-  } 
+  }
+  
+  spawnPipes();
 
   drawSprites();
 }
@@ -74,18 +76,16 @@ function draw() {
 function spawnPipes() {
 
   if (frameCount % 60 === 0) {
-    var pipe10 = createSprite(500,50,40,10);
-    pipe10.addImage(cloudImage);
-    pipe10.scale = 0.5;
-    pipe10.velocityX = -3;
+    var pipe10 = createSprite(Math.round(random(700, 1200)),165,40,10);
+    pipe10.addImage(pipe);
+    pipe10.scale = 0.1;
+    pipe10.velocityX = -9;
 
-    pipe10.lifetime = 200;
+    pipe10.lifetime = 1500;
     
-    pipe10.depth = mario.depth;
-    mario.depth = mario.depth + 1;
-    pipe10.depth = bg.depth
-    pipe10.depth = bg.depth + 1;
+    pipe10.depth = bg1.depth
+    pipe10.depth = bg1.depth + 1;
 
-    pipesGroup.add(pipe);
+    pipesGroup.add(pipe10);
   }
 }
